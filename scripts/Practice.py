@@ -4,9 +4,25 @@ import pickle
 import numpy as np
 import sys
 import os
+import random
 
 mp_hands = mp.solutions.hands
 mp_draw = mp.solutions.drawing_utils
+words = [
+    "cat", "dog", "sun", "hat", "bat", "rat", "pen", "cup", "bed", "red",
+    "blue", "green", "run", "jump", "sit", "top", "box", "fox", "tree", "bee",
+    "car", "bus", "toy", "ball", "doll", "book", "page", "leaf", "wind", "rain",
+    "snow", "ice", "fire", "rock", "sand", "sea", "fish", "bird", "duck", "frog",
+    "cow", "pig", "goat", "sheep", "horse", "farm", "barn", "road", "path", "hill",
+    "lake", "river", "pond", "boat", "ship", "map", "star", "moon", "sky", "cloud",
+    "day", "night", "light", "dark", "warm", "cold", "hot", "cool", "fast", "slow",
+    "big", "small", "tall", "short", "long", "wide", "thin", "fat", "old", "new",
+    "good", "bad", "happy", "sad", "fun", "play", "game", "sing", "dance", "read",
+    "write", "draw", "color", "paint", "build", "make", "fix", "help", "love", "like"
+]
+
+
+word = words[random.randint(0,99)]
 
 hands = mp_hands.Hands(
     max_num_hands=1,               
@@ -35,7 +51,7 @@ SELECTED_LETTER = 'A'
 
 cap = cv2.VideoCapture(0)
 dected = False
-list_of_letters_str = ''
+list_of_letters_str = 'Spelled: '
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -79,6 +95,8 @@ while True:
     
     cv2.putText(frame, str(list_of_letters_str), (30, 100),
                 cv2.FONT_HERSHEY_SIMPLEX, 1.5, (20,188,255), 3)
+    cv2.putText(frame, f"Spell the word: {word}", (30, 140),
+                cv2.FONT_HERSHEY_SIMPLEX, 1.5, (20,188,255), 3)
     
     cv2.putText(frame, f"Detecting: {SELECTED_LETTER}", (30, frame.shape[0] - 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
@@ -89,7 +107,8 @@ while True:
     cv2.imshow("Sign Recognition", frame)
 
     key = cv2.waitKey(1) & 0xFF
-
+    if word.lower() == list_of_letters_str.lower():
+        break
     if key == 27:
         break
 
