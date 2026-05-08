@@ -17,7 +17,31 @@ cd <repository-folder>
 
 ---
 
-### 2. Run the Program
+### 2. Set Up the Environment
+
+Make sure you have **Python 3.8+** installed. Then create a virtual environment and install the dependencies:
+
+```bash
+python -m venv venv
+source venv/bin/activate        # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+---
+
+### 3. Build the Executable
+
+From the **project root folder**, run:
+
+```bash
+pyinstaller --onefile --collect-all mediapipe --collect-all sklearn --add-data "models/sign_model_rf.pkl;models" scripts/Practice.py
+```
+
+This will generate `Practice.exe` inside the `dist/` folder.
+
+---
+
+### 4. Run the Program
 
 Navigate to the `dist/` folder and double-click **`Practice.exe`**, or run it via terminal:
 
@@ -25,8 +49,6 @@ Navigate to the `dist/` folder and double-click **`Practice.exe`**, or run it vi
 cd dist
 ./Practice.exe
 ```
-
-No Python installation or dependencies required.
 
 ---
 
@@ -41,6 +63,7 @@ No Python installation or dependencies required.
 
 ## Requirements
 
+- Python 3.8+
 - A working webcam
 - Windows OS
 
