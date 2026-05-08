@@ -6,7 +6,7 @@ This program uses your webcam to detect hand signs from the **Dutch Sign Languag
 
 ## Getting Started
 
-### 1. Download the Environment
+### 1. Download the Repository
 
 Clone or download this repository to your local machine:
 
@@ -15,7 +15,11 @@ git clone <repository-url>
 cd <repository-folder>
 ```
 
-Then install the required dependencies. It is recommended to use a virtual environment:
+---
+
+### 2. Set Up the Environment
+
+Make sure you have **Python 3.8+** installed. Then create a virtual environment and install the dependencies:
 
 ```bash
 python -m venv venv
@@ -25,18 +29,25 @@ pip install -r requirements.txt
 
 ---
 
-### 2. Navigate to the Scripts Folder
+### 3. Build the Executable
+
+From the **project root folder**, run:
 
 ```bash
-cd scripts
+pyinstaller --onefile --collect-all mediapipe --collect-all sklearn --add-data "models/sign_model_rf.pkl;models" scripts/Practice.py
 ```
+
+This will generate `Practice.exe` inside the `dist/` folder.
 
 ---
 
-### 3. Run the Program
+### 4. Run the Program
+
+Navigate to the `dist/` folder and double-click **`Practice.exe`**, or run it via terminal:
 
 ```bash
-python Practice.py
+cd dist
+./Practice.exe
 ```
 
 ---
@@ -54,7 +65,7 @@ python Practice.py
 
 - Python 3.8+
 - A working webcam
-- Dependencies listed in `requirements.txt`
+- Windows OS
 
 ---
 
