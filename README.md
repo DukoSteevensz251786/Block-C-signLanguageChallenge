@@ -29,7 +29,20 @@ pip install -r requirements.txt
 
 ---
 
-### 3. Build the Executable
+## Running the Program
+
+### Option A — Run directly with Python
+
+Navigate to the scripts folder and run:
+
+```bash
+cd scripts
+python Practice.py
+```
+
+---
+
+### Option B — Build and run as an executable
 
 From the **project root folder**, run:
 
@@ -37,13 +50,7 @@ From the **project root folder**, run:
 pyinstaller --onefile --collect-all mediapipe --collect-all sklearn --add-data "models/sign_model_rf.pkl;models" scripts/Practice.py
 ```
 
-This will generate `Practice.exe` inside the `dist/` folder.
-
----
-
-### 4. Run the Program
-
-Navigate to the `dist/` folder and double-click **`Practice.exe`**, or run it via terminal:
+This will generate `Practice.exe` inside the `dist/` folder. Then run it:
 
 ```bash
 cd dist
